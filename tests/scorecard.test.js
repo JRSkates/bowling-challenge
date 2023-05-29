@@ -43,4 +43,14 @@ describe('ScoreCard', () => {
     scorecard.addFrame(3, 2);
     expect(scorecard.calculateScore()).toEqual(18)
   });
+
+  it ('correctly calculates multiple spares', () => {
+    let scorecard = new ScoreCard();
+    scorecard.addFrame(8, 2);
+    scorecard.addFrame(3, 2);
+    scorecard.addFrame(5, 2);
+    scorecard.addFrame(3, 7);
+    scorecard.addFrame(5, 1);
+    expect(scorecard.calculateScore()).toEqual(46);
+  });
 });

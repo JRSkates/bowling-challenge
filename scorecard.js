@@ -6,7 +6,9 @@ class ScoreCard {
 
   addFrame(pointOne, pointTwo) {
     this.count -= 1;
-    if (this.frames.length === 0) {
+    if (this.count === 0) {
+      return tenthFrame(pointOne, pointTwo);
+    } else if(this.frames.length === 0) {
       this.frames.push([pointOne, pointTwo]);
     } else if (this.frames[this.frames.length - 1][0] === 10) {
       let sum = pointOne + pointTwo;
@@ -20,15 +22,20 @@ class ScoreCard {
     } else {
       this.frames.push([pointOne, pointTwo]);
     }
-    console.log(this.frames);
-    console.log(this.count);
-    console.log(this.frames[this.frames.length - 1][0]);
+    // console.log(this.frames);
+    // console.log(this.count);
+    // console.log(this.frames[this.frames.length - 1][0]);
+
   }
 
   calculateScore() {
     if(this.frames.length === 0) return 0;
     let result = this.frames.flat().reduce((total, amount) => total + amount);
     return result;
+  }
+
+  tenthFrame(pointOne, pointTwo) {
+
   }
 
 }
