@@ -11,14 +11,9 @@ class ScoreCard {
     } else if(this.frames.length === 0) {
       this.frames.push([pointOne, pointTwo]);
     } else if (this.frames[this.frames.length - 1][0] === 10) {
-      let sum = pointOne + pointTwo;
-      let lastFrame = this.frames[this.frames.length - 1][0]
-      this.frames[this.frames.length - 1][0] = sum + lastFrame
-      this.frames.push([pointOne, pointTwo]);
+      this.strikeBonus(pointOne, pointTwo);
     } else if (this.frames[this.frames.length - 1].reduce((total, amount) => total + amount) === 10) {
-      let lastFrame = this.frames[this.frames.length - 1][0]
-      this.frames[this.frames.length - 1][0] = pointOne + lastFrame
-      this.frames.push([pointOne, pointTwo]);
+      this.spareBonus(pointOne, pointTwo);
     } else {
       this.frames.push([pointOne, pointTwo]);
     }
@@ -36,6 +31,19 @@ class ScoreCard {
 
   tenthFrame(pointOne, pointTwo) {
 
+  }
+
+  strikeBonus(pointOne, pointTwo) {
+    let sum = pointOne + pointTwo;
+    let lastFrame = this.frames[this.frames.length - 1][0]
+    this.frames[this.frames.length - 1][0] = sum + lastFrame
+    this.frames.push([pointOne, pointTwo]);
+  }
+
+  spareBonus(pointOne, pointTwo) {
+    let lastFrame = this.frames[this.frames.length - 1][0]
+    this.frames[this.frames.length - 1][0] = pointOne + lastFrame
+    this.frames.push([pointOne, pointTwo]);
   }
 
 }
